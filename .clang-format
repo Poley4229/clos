@@ -1,0 +1,84 @@
+BasedOnStyle: LLVM
+
+Language: Cpp
+
+# Indentation
+UseTab: Always
+TabWidth: 4
+IndentWidth: 4
+ContinuationIndentWidth: 4
+
+# Line length
+ColumnLimit: 80
+
+# Braces
+#BreakBeforeBraces: Attach
+#AllowShortFunctionsOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortLambdasOnASingleLine: Empty
+#AllowShortBlocksOnASingleLine: Empty
+AllowShortBlocksOnASingleLine: Empty
+BreakBeforeBraces: Custom
+BraceWrapping:
+  BeforeElse: true
+
+# Classes / namespaces
+NamespaceIndentation: None
+AccessModifierOffset: -4
+
+# Switch statements
+IndentCaseLabels: false
+
+# Pointer/reference alignment
+DerivePointerAlignment: false
+PointerAlignment: Left
+ReferenceAlignment: Left
+
+# Spaces
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+# Operators
+#BreakBeforeBinaryOperators: None
+BreakBeforeBinaryOperators: NonAssignment
+
+# Functions
+BinPackParameters: true
+BinPackArguments: true
+AllowAllParametersOfDeclarationOnNextLine: false
+
+# Constructors
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerIndentWidth: 4
+
+# Empty lines
+MaxEmptyLinesToKeep: 1
+
+# Alignment
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignTrailingComments: false
+
+# Includes
+SortIncludes: CaseSensitive
+IncludeBlocks: Preserve
+
+# Case
+AllowShortCaseLabelsOnASingleLine: true
+
+IncludeCategories:
+  - Regex: '^".*\.hpp"$'
+    Priority: 1
+
+  - Regex: '^".*"'
+    Priority: 2
+
+  - Regex: '^<.*>'
+    Priority: 3
+
+# Comments
+ReflowComments: true
+
+Standard: c++17
