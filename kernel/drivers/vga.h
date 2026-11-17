@@ -21,6 +21,8 @@ enum vga_color {
 	VGA_WHITE,
 };
 
+typedef enum vga_color vga_color;
+
 // Clears screen and resets cursor
 void vga_init(void);
 // Handles individual chars
@@ -28,4 +30,4 @@ void vga_putc(char c);
 // Write a string to the screen
 void vga_write(const char* s);
 // Sets the colours of the terminal
-void vga_set_color(enum vga_color fg, enum vga_color bg);
+void vga_set_color(vga_color fg, vga_color bg);

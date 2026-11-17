@@ -6,10 +6,10 @@ WarningsAsErrors: ''
 
 CheckOptions:
   - key: readability-identifier-naming.ClassCase
-    value: CamelCase
+    value: lower_case
 
   - key: readability-identifier-naming.StructCase
-    value: CamelCase
+    value: lower_case
 
   - key: readability-identifier-naming.EnumCase
     value: lower_case
@@ -18,7 +18,7 @@ CheckOptions:
     value: UPPER_CASE
 
   - key: readability-identifier-naming.ScopedEnumConstantCase
-    value: CamelCase
+    value: lower_case
 
   - key: readability-identifier-naming.NamespaceCase
     value: lower_case
@@ -30,7 +30,7 @@ CheckOptions:
     value: lower_case
 
   - key: readability-identifier-naming.MemberCase
-    value: camelBack
+    value: lower_case
 
   - key: readability-identifier-naming.ConstantCase
     value: UPPER_CASE

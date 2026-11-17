@@ -1,0 +1,32 @@
+#include "idt.h"
+
+#include "../lib/string.h"
+
+struct idt_entry {
+	uint16_t base_lo;
+	uint16_t sel;
+	uint8_t zero;
+	uint8_t flags;
+	uint16_t base_hi;
+} __attribute__((packed));
+
+struct idt_ptr {
+	uint16_t limit;
+	uint32_t base;
+} __attribute__((packed));
+
+static struct idt_entry idt[256];
+
+void idt_set_gate(uint8_t n, uint32_t handler) {
+	idt[n].base_lo = handler & 0xFFFF;
+	idt[n].sel = 0x08;
+	idt[n].zero = 0;
+	idt[n].flags = 0x8E;
+	idt[n].base_hi = (handler >> 16) & 0xFFFF;
+}
+
+void idt_init(void) {
+	memset(idt, 0, sizeof(idt));
+	struct idt_ptr p = {sizeof(idt) - 1, (uint32_t)idt};
+	__asm__ volatile("lidt %0" : : "m"(p));
+}

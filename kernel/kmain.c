@@ -1,13 +1,28 @@
 #include "kmain.h"
+#include "arch/idt.h"
+#include "arch/pic.h"
+#include "drivers/ps2.h"
 #include "drivers/vga.h"
+#include "shell/shell.h"
 
-void kmain() {
+void process_kbd(void) {
+	char c;
+	while (kbd_read(&c)) {
+		shell_input(c);
+	}
+}
+
+void kmain(void) {
 	vga_init();
-	vga_set_color(VGA_LIGHT_GREY, VGA_BLACK);
-	vga_write("Welcome to ");
-	vga_set_color(VGA_LIGHT_BLUE, VGA_BLACK);
-	vga_write("CLOS");
-	vga_set_color(VGA_LIGHT_GREY, VGA_BLACK);
-	vga_write("!\n");
-	vga_write("No files, no commands, no input, no problem.\n");
+	pic_remap();
+	idt_init();
+	ps2_setup();
+	__asm__ volatile("sti");
+
+	shell_init();
+
+	for (;;) {
+		process_kbd();
+		__asm__ volatile("hlt");
+	}
 }

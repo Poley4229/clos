@@ -12,3 +12,10 @@ static inline uint8_t inb(uint16_t port) {
 	__asm__ volatile("inb %1, %0" : "=a"(value) : "Nd"(port));
 	return value;
 }
+
+static inline void io_wait() {
+	outb(0x80, 0);
+}
+
+void mask_irq(uint8_t irq);
+void unmask_irq(uint8_t irq);
