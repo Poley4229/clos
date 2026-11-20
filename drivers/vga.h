@@ -31,3 +31,5 @@ void vga_putc(char c);
 void vga_write(const char* s);
 // Sets the colours of the terminal
 void vga_set_color(vga_color fg, vga_color bg);
+// Clears all chars off of the screen
+void vga_clear();

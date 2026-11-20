@@ -30,10 +30,17 @@ static void cmd_echo(int argc, char** argv) {
 	vga_putc('\n');
 }
 
+static void cmd_clear(int argc, char** argv) {
+	(void)argc;
+	(void)argv;
+	vga_clear();
+}
+
 const struct command COMMANDS[] = {
 	{"clos", "about this OS", cmd_clos},
 	{"help", "list commands", cmd_help},
 	{"echo", "writes arguments", cmd_echo},
+	{"clear", "clears the terminal", cmd_clear},
 };
 
 const size_t COMMAND_COUNT = sizeof(COMMANDS) / sizeof(COMMANDS[0]);
