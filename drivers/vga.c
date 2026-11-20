@@ -14,6 +14,8 @@ static size_t cursor_row;
 static size_t cursor_col;
 static uint8_t current_color = (VGA_BLACK << 4) | VGA_LIGHT_GREY;
 
+static bool available = false;
+
 static uint16_t make_entry(char c, uint8_t color) {
 	return (uint16_t)(uint8_t)c | ((uint16_t)color << 8);
 }
@@ -55,6 +57,11 @@ void vga_clear(void) {
 
 void vga_init(void) {
 	vga_clear();
+	available = true;
+}
+
+bool vga_avail(void) {
+	return available;
 }
 
 void vga_set_color(enum vga_color fg, enum vga_color bg) {

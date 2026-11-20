@@ -1,6 +1,7 @@
 #include "commands.h"
 
 #include "../drivers/vga.h"
+#include "arch/power.h"
 
 static void cmd_clos(int argc, char** argv) {
 	(void)argc;
@@ -36,11 +37,18 @@ static void cmd_clear(int argc, char** argv) {
 	vga_clear();
 }
 
+static void cmd_shutdown(int argc, char** argv) {
+	(void)argc;
+	(void)argv;
+	power_shutdown();
+}
+
 const struct command COMMANDS[] = {
 	{"clos", "about this OS", cmd_clos},
 	{"help", "list commands", cmd_help},
 	{"echo", "writes arguments", cmd_echo},
 	{"clear", "clears the terminal", cmd_clear},
+	{"shutdown", "shutdown the pc (only works on VMs)", cmd_shutdown},
 };
 
 const size_t COMMAND_COUNT = sizeof(COMMANDS) / sizeof(COMMANDS[0]);

@@ -25,6 +25,8 @@ typedef enum vga_color vga_color;
 
 // Clears screen and resets cursor
 void vga_init(void);
+// Returns is vga is available
+bool vga_avail(void);
 // Handles individual chars
 void vga_putc(char c);
 // Write a string to the screen
@@ -33,3 +35,4 @@ void vga_write(const char* s);
 void vga_set_color(vga_color fg, vga_color bg);
 // Clears all chars off of the screen
 void vga_clear();
+
