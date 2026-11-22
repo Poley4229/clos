@@ -15,3 +15,9 @@ void power_shutdown(void) {
 		__asm__ volatile("cli; hlt");
 	}
 }
+
+void power_reboot(void) {
+	// Tell PC to reboot instead of shutdown
+	outb(0x64, 0xFE);
+	power_shutdown();
+}
