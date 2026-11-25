@@ -1,6 +1,6 @@
 #include "idt.h"
 
-#include "../lib/string.h"
+#include "lib/string.h"
 
 struct idt_entry {
 	uint16_t base_lo;

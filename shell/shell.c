@@ -1,7 +1,7 @@
 #include "shell.h"
-#include "../drivers/vga.h"
-#include "../lib/string.h"
 #include "commands.h"
+#include "drivers/vga/vga.h"
+#include "lib/string.h"
 
 #define SHELL_LINE_MAX 128
 #define SHELL_MAX_ARGS 8

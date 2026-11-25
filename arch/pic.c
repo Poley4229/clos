@@ -39,3 +39,8 @@ void unmask_irq(uint8_t irq) {
 	if (irq >= 8) irq -= 8;
 	outb(port, inb(port) & ~(1 << irq));
 }
+
+void pic_eoi(uint8_t irq) {
+	if (irq >= 8) outb(PIC2_CMD, 0x20);
+	outb(PIC1_CMD, 0x20);
+}

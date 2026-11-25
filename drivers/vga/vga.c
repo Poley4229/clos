@@ -1,6 +1,7 @@
 #include "vga.h"
 
-#include "../arch/io.h"
+#include "arch/io.h"
+#include "lib/stddef.h"
 
 #define VGA_WIDTH 80
 #define VGA_HEIGHT 25

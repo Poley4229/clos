@@ -1,8 +1,8 @@
 #include "commands.h"
 
-#include "../drivers/vga.h"
 #include "arch/io.h"
 #include "arch/power.h"
+#include "drivers/vga/vga.h"
 
 static void cmd_clos(int argc, char** argv) {
 	(void)argc;

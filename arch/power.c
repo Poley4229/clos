@@ -1,5 +1,5 @@
 #include "power.h"
-#include "drivers/vga.h"
+#include "drivers/vga/vga.h"
 #include "io.h"
 
 void power_shutdown(void) {

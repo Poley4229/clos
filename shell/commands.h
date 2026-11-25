@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../lib/stddef.h"
+#include "lib/stddef.h"
 
 struct command {
 	const char* name;

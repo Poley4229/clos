@@ -1,7 +1,8 @@
 #include "ps2.h"
 
-#include "../arch/io.h"
-#include "../arch/pic.h"
+#include "arch/io.h"
+#include "arch/irq.h"
+#include "lib/stddef.h"
 
 #define PS2_DATA_PORT 0x60
 #define PS2_STATUS_PORT 0x64
@@ -44,15 +45,8 @@ static volatile int shift_pressed = 0;
 extern void irq1_stub(void);
 void idt_set_gate(uint8_t n, uint32_t handler);
 
-void ps2_setup(void) {
-	while (inb(0x64) & 1)
-		inb(0x60);
-
-	idt_set_gate(0x21, (uint32_t)irq1_stub);
-	unmask_irq(1);
-}
-
-void ps2_irq_handler(void) {
+void ps2_irq_handler(void* ctx) {
+	(void)ctx;
 	uint8_t scancode = inb(0x60);
 
 	if (scancode == 0x2A || scancode == 0x36) {
@@ -73,8 +67,13 @@ void ps2_irq_handler(void) {
 			}
 		}
 	}
+}
 
-	outb(0x20, 0x20);
+void ps2_init(void) {
+	while (inb(PS2_STATUS_PORT) & PS2_STATUS_OUTPUT_BUFFER_FULL)
+		inb(PS2_DATA_PORT);
+
+	irq_register(1, ps2_irq_handler, NULL);
 }
 
 int kbd_read(char* out) {
